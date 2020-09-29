@@ -1,34 +1,30 @@
 <script>
-  export let itemCat;
-  export let itemSubCat;
-  export let itemQtyType;
-  export let itemPriceWs;
-  export let itemPriceRt;
+  import {products} from './products.js';
+  import { createEventDispatcher } from 'svelte';
+  const dispatch = createEventDispatcher();
+  export let id;
+  export let name;
+  export let cat;
+  const addProduct=()=>{
+    id=Math.floor(Math.random()*100);
+    dispatch('products', {id, name, cat});
+  }
 </script>
+<!-- ############################################### -->
 <div>
-<h3>Add Product</h3>
-<table>
-  <tr>
-    <td><input type="text" placeholder="Category" bind:value={itemCat}></td>
-  </tr>
-  <tr>
-    <td><input type="text" placeholder="Sub Category" bind:value={itemSubCat}></td>
-  </tr>
-  <tr>
-    <td><input type="text" placeholder="Quantity Type" bind:value={itemSubCat}></td>
-  </tr>
-  <tr>
-    <td><input type="text" placeholder="Wholesale Price" bind:value={itemSubCat}></td>
-  </tr>
-  <tr>
-    <td><input type="text" placeholder="Retail Price" bind:value={itemSubCat}></td>
-  </tr>
-  <tr>
-    <td><input type="submit" value="Add"></td>
-  </tr>
-</table>
+  <h3>Add Product</h3>
+  <table>
+    <tr>
+      <td><input type="text" placeholder="Name" bind:value={name}></td>
+    </tr>
+    <tr>
+      <td><input type="text" placeholder="Category" bind:value={cat}></td>
+    </tr>
+    <tr>
+      <td><button on:click={addProduct}>Add</button></td>
+    </tr>
+  </table>
 </div>
-
+<!-- ############################################### -->
 <style>
-  
 </style>
