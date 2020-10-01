@@ -3,16 +3,17 @@
 	import Tabs from './shared/Tabs.svelte';
 	import AddProduct from './components/AddProduct.svelte';
 	import Footer from './components/Footer.svelte';
-	import UpdatePrice from './components/UpdatePrice.svelte';
+	import ProductList from './components/ProductList.svelte';
 	import ShowList from './components/ShowList.svelte';
 	import SingleItem from './components/SingleItem.svelte';
 	import {products} from './components/products.js';
 	let newItem;
 	let items=[
-	'List',
+	'Add Product',
+	'Product List',
 	'Update Price',
 	];
-	let activeItem='List';
+	let activeItem='Add Product';
 	const tabChange=(e)=>{
 		activeItem=e.detail;
 	};
@@ -27,12 +28,12 @@
 	<div>
 		<div class="itemList">
 			<Tabs {activeItem}{items} on:tabChange={tabChange}/>
-			{#if activeItem==='List'}
+			{#if activeItem==='Add Product'}
 				<AddProduct on:products={handleAddProduct}/>
-				<hr><h2>Product List</h2>
-				<ShowList />			
+			{:else if activeItem==='Product List'}
+			<ShowList />
 			{:else if activeItem==='Update Price'}
-			<UpdatePrice />
+			<ShowList />
 			{/if}
 		</div>
 	</div>
